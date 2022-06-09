@@ -78,12 +78,12 @@ class FirebaseMusicSource @Inject constructor(
         }
 
     fun whenReady(action: (Boolean) -> Unit): Boolean {
-        if (state == State.STATE_CREATED || state == State.STATE_INITIALING) {
+        return if (state == State.STATE_CREATED || state == State.STATE_INITIALING) {
             onReadyListeners += action
-            return false
+            false
         } else {
             action(state == State.STATE_INITIALED)
-            return true
+            true
         }
     }
 }
